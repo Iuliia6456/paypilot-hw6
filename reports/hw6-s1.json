@@ -1,0 +1,84 @@
+[
+ {
+  "scenario": "S1",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "The dispute is open (dispute ID 1) for TX-0202, the 89.99 USD CloudServe Subscription charge on ACC-1003 dated 8 September 2026, filed as an unauthorized debit. Its status is open.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.00047,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S1",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D12"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": false,
+      "detail": "account_id='ACC-1002', expected 'ACC-1003'; currency='EUR', expected 'USD'"
+     }
+    ],
+    "answer": "I've opened dispute 1 for TX-0202, the 89.99 USD CloudServe Subscription charge on ACC-1003 dated 8 September 2026, under the reason \"unauthorized debit\". Its status is open.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     0,
+     2638,
+     2638
+    ],
+    "cost_usd": 0.000774,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ }
+]

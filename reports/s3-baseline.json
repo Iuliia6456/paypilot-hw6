@@ -1,0 +1,47 @@
+[
+ {
+  "scenario": "S3",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_result_schema",
+      "ok": true,
+      "detail": "result matches the contract"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     },
+     {
+      "kind": "max_tool_calls",
+      "ok": true,
+      "detail": "2 tool calls ['check_dispute_eligibility', 'get_account'], max 2"
+     }
+    ],
+    "answer": "I can't open a dispute for TX-0402. The 60-day window for a duplicate-charge claim on that transaction (dated 14 July 2026) closed on 12 September 2026, and today is 15 September 2026. The eligibility check failed on that window alone; the reason code and transaction status passed.\n\nThe other TechMart Online payment, TX-0401 (240.00 EUR, 20 July 2026), is still within the window. However, if you want it disputed, I'd need to check it separately, and it's unclear whether it's a duplicate of TX-0402, since the two payments are for the same amount.\n\nI can escalate your case to a human agent to review whether any other option applies to the TX-0402 charge. Would you like me to do that?",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000559,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ }
+]

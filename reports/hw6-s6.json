@@ -1,0 +1,84 @@
+[
+ {
+  "scenario": "S6",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0801', 'account_id': 'ACC-1009', 'amount': 120.0, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0801 (BookDepot US, 120 USD, 9 Sep 2026) under the reason \"unauthorized debit\". Its status is open.\n\nThe dispute window for this transaction runs until 4 Nov 2026. Let me know if you want anything else on account ACC-1009.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000469,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S6",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D11"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": false,
+      "detail": "currency='EUR', expected 'USD'"
+     }
+    ],
+    "answer": "The dispute for TX-0801 is now open (dispute ID 1, status: open).\n\n- **Transaction:** BookDepot US, 120 USD, 9 September 2026, card payment on account ACC-1009\n- **Reason:** unauthorized debit\n- **Dispute deadline for this transaction:** 4 November 2026\n\nYour next step is to check the dispute status in your account. If you did not make any other payments you don't recognise, I can review the rest of your recent transactions too.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000505,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ }
+]

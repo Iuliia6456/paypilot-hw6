@@ -1,0 +1,262 @@
+[
+ {
+  "scenario": "S5",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your limits on the tier3 plan, as of 15 September 2026 (EUR equivalent):\n\n- **Daily:** limit 100,000 EUR; used 4,914 EUR; remaining 95,086 EUR\n- **Monthly:** limit 1,000,000 EUR; used 35,334 EUR; remaining 964,666 EUR",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000293,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 2,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your tier3 limits, as of 15 September 2026, are:\n\n- **Daily:** €100,000 limit, €4,914.00 used, €95,086.00 remaining\n- **Monthly:** €1,000,000 limit, €35,334.00 used, €964,666.00 remaining\n\nThese figures are in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000301,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 3,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your current transfer limits (tier3, as of 15 September 2026, in EUR equivalent):\n\n- **Daily:** limit 100,000.00 EUR; used 4,914.00 EUR; remaining 95,086.00 EUR\n- **Monthly:** limit 1,000,000.00 EUR; used 35,334.00 EUR; remaining 964,666.00 EUR",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000299,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 4,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your tier3 limits, as of 15 September 2026, are in EUR:\n\n- **Daily:** 100,000.00 EUR limit, 4,914.00 EUR used, **95,086.00 EUR remaining**\n- **Monthly:** 1,000,000.00 EUR limit, 35,334.00 EUR used, **964,666.00 EUR remaining**",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000308,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 5,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your tier3 transfer limits, as of 15 September 2026, are:\n\n- **Daily:** 100,000 EUR limit, 4,914.00 EUR used, 95,086.00 EUR remaining\n- **Monthly:** 1,000,000 EUR limit, 35,334.00 EUR used, 964,666.00 EUR remaining\n\nThese figures are in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000311,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S5",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D28"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your tier3 transfer limits, as of 15 September 2026, are:\n\n- **Daily:** EUR 100,000.00 limit, EUR 4,914.00 used, **EUR 95,086.00 remaining**\n- **Monthly:** EUR 1,000,000.00 limit, EUR 35,334.00 used, **EUR 964,666.00 remaining**\n\nThese are shown in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000901,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 2,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your current limits on the tier3 profile, as of 15 September 2026, are:\n\n- **Daily:** €100,000 limit, €4,914.00 used, €95,086.00 remaining\n- **Monthly:** €1,000,000 limit, €35,334.00 used, €964,666.00 remaining\n\nThese figures are in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000875,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 3,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your tier3 transfer limits, as of 15 September 2026, are:\n\n- **Daily:** limit €100,000.00; spent €4,914.00; remaining €95,086.00\n- **Monthly:** limit €1,000,000.00; spent €35,334.00; remaining €964,666.00\n\nThe limits are shown in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000883,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 4,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your current transfer limits (tier3, as of 15 September 2026, in EUR equivalent) are:\n\n- **Daily:** limit 100,000 EUR; spent 4,914 EUR; remaining 95,086 EUR\n- **Monthly:** limit 1,000,000 EUR; spent 35,334 EUR; remaining 964,666 EUR",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000877,
+    "mock_answered": 5,
+    "mock_seen": 7
+   },
+   {
+    "run": 5,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your current transfer limits (tier3, as of 15 September 2026, in EUR equivalent):\n\n- **Daily:** limit 100,000.00 EUR; used 4,914.00 EUR; remaining 95,086.00 EUR\n- **Monthly:** limit 1,000,000.00 EUR; used 35,334.00 EUR; remaining 964,666.00 EUR",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000881,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ }
+]

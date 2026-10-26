@@ -1,0 +1,192 @@
+[
+ {
+  "scenario": "S2",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I have opened an unauthorized debit dispute for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026). The dispute ID is 1 and its status is open. The dispute deadline was 3 November 2026, so it was filed within the window.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000444,
+    "mock_answered": 3,
+    "mock_seen": 6
+   },
+   {
+    "run": 2,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I have opened an unauthorized-debit dispute for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026). The dispute ID is 1 and its status is open.\n\nThe FlightHub Booking payment (TX-0204) is unchanged, since you confirmed it as yours.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000458,
+    "mock_answered": 3,
+    "mock_seen": 6
+   },
+   {
+    "run": 3,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I have opened an unauthorized debit dispute for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026). The dispute ID is 1 and its status is open. The dispute deadline was 3 November 2026, so it was within the window.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000456,
+    "mock_answered": 3,
+    "mock_seen": 6
+   },
+   {
+    "run": 4,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026) under the reason \"unauthorized debit\". Its status is open.\n\nThe FlightHub payment (TX-0204) is not affected and stays as it is.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000448,
+    "mock_answered": 3,
+    "mock_seen": 6
+   },
+   {
+    "run": 5,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026) under the reason \"unauthorized debit\". Its status is open.\n\nThe FlightHub payment (TX-0204) remains as it is, since you confirmed it.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000443,
+    "mock_answered": 3,
+    "mock_seen": 6
+   }
+  ]
+ }
+]

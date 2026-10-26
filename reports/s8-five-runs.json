@@ -1,0 +1,167 @@
+[
+ {
+  "scenario": "S8",
+  "condition": "baseline",
+  "settings": {
+   "defects": "",
+   "profile": "clean"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized debit\n- **Status:** open\n\nI can't tell you from here how long the review will take. If you have any other unrecognized charges, I can check them too.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000499,
+    "mock_answered": 4,
+    "mock_seen": 7
+   },
+   {
+    "run": 2,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized debit\n- **Status:** open\n\nThe eligibility check passed: the transaction is settled and within the 56-day window, which runs to 3 November 2026. Nothing further is needed from you at this stage.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000508,
+    "mock_answered": 4,
+    "mock_seen": 7
+   },
+   {
+    "run": 3,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized debit\n- **Status:** open\n\nThe eligibility check passed, and the dispute window runs until 3 November 2026. I have not yet received any outcome or timeline from the dispute process. Is there anything else I can help you with on this account?",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000513,
+    "mock_answered": 4,
+    "mock_seen": 7
+   },
+   {
+    "run": 4,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized debit\n- **Status:** open\n\nI can't give a resolution timeline from my tools. If you have any other concerns about this account, I can escalate to a human agent.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000501,
+    "mock_answered": 4,
+    "mock_seen": 7
+   },
+   {
+    "run": 5,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized debit\n- **Status:** open\n\nThe eligibility check passed, and the dispute window runs until 3 November 2026. I have not made any changes to the account. If you want to do anything further, such as having your card or account access reviewed, I can escalate this to a human agent.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000517,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ }
+]

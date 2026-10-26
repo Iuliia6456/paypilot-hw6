@@ -1,0 +1,347 @@
+[
+ {
+  "scenario": "S1",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "The dispute is open (dispute ID 1) for TX-0202, the 89.99 USD CloudServe Subscription charge on ACC-1003 dated 8 September 2026, filed under the reason \"unauthorized debit.\" Its status is open. The eligibility check passed, so the charge is within the dispute window.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000482,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S2",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_not_called",
+      "ok": true,
+      "detail": "create_dispute{'transaction_id': 'TX-0204'} called 0x"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute 1 for TX-0202 (CloudServe Subscription, 89.99 USD, 8 September 2026) under the reason \"unauthorized debit\". Its status is open.\n\nThe dispute was accepted within the 56-day window, which runs until 3 November 2026. TX-0204 (FlightHub Booking, 450.00 USD) is unchanged, since you confirmed it.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000483,
+    "mock_answered": 3,
+    "mock_seen": 6
+   }
+  ]
+ },
+ {
+  "scenario": "S3",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a dispute for TX-0402. The duplicate-charge window is 60 days, and it closed on 12 September 2026. The payment was made on 14 July 2026, and today is 15 September 2026, so the claim is out of time. I have not submitted anything.\n\nOptions:\n- **Contact TechMart Online directly** and ask for a refund of the second 240.00 EUR payment. Merchants can often refund duplicates outside the dispute process.\n- **Ask a human agent to review the expired window.** I can escalate your case, but I can't promise an exception will be granted.\n\nWould you like me to escalate?",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000782,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S4",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0401', 'account_id': 'ACC-1005', 'amount': 240.0, 'currency': 'EUR'}]"
+     }
+    ],
+    "answer": "The dispute is already open. I opened it a moment ago for TX-0401 under reason code duplicate_charge, and the system returned dispute ID 1 with status \"open.\" I haven't opened a second one, because a duplicate dispute on the same transaction could cause confusion or complications.\n\nI can't pull up the dispute list with the tools I have. If you need independent confirmation that dispute 1 is recorded, I can escalate to a human agent to check it.",
+    "tools": [],
+    "model_calls": 1,
+    "cache_read": [
+     2514
+    ],
+    "cost_usd": 0.000219,
+    "mock_answered": 3,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S5",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your tier3 transfer limits, as of 15 September 2026, are:\n\n- **Daily:** 100,000 EUR limit, 4,914 EUR used, 95,086 EUR remaining\n- **Monthly:** 1,000,000 EUR limit, 35,334 EUR used, 964,666 EUR remaining\n\nThese figures are in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000313,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S6",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0801', 'account_id': 'ACC-1009', 'amount': 120.0, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0801 (BookDepot US, 120 USD, 9 September 2026) under the reason \"unauthorized debit\". Its status is open.\n\nThe dispute window for this transaction runs until 4 November 2026. Please keep any evidence you have, such as messages from the merchant or a description of how the card was used. If you suspect your card or login details have been compromised, tell me and I can escalate that to a human agent.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000607,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S7",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 1,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_sequence",
+      "ok": true,
+      "detail": "tools ['get_account', 'check_limits']"
+     }
+    ],
+    "answer": "Yes, a EUR 4,500 transfer fits within your limits today, and your balance covers it.\n\n- **Daily limit (Tier 3):** EUR 100,000. Spent today: EUR 4,914. Remaining: EUR 95,086.\n- **Monthly limit (Tier 3):** EUR 1,000,000. Spent this month: EUR 35,334. Remaining: EUR 964,666.\n- **Balance:** GBP 61,200 on account ACC-1011. Your account is in GBP, so the EUR transfer would be converted from that balance.\n\nI haven't checked the exact GBP amount that would be debited, since that depends on the exchange rate. If you'd like, I can get a full FX quote for EUR 4,500 showing the rate, spread and final amount. I can't confirm the transfer will complete, because that depends on processing at the time you send it.",
+    "tools": [
+     "get_account",
+     "check_limits"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000452,
+    "mock_answered": 0,
+    "mock_seen": 3
+   }
+  ]
+ },
+ {
+  "scenario": "S8",
+  "condition": "baseline",
+  "settings": {
+   "defects": "",
+   "profile": "clean"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "tool_order",
+      "ok": true,
+      "detail": "check_dispute_eligibility before create_dispute: ['check_dispute_eligibility', 'create_dispute']"
+     }
+    ],
+    "answer": "The dispute is open.\n\n- **Dispute ID:** 1\n- **Transaction:** TX-0202, CloudServe Subscription, 89.99 USD, 8 September 2026 (ACC-1003)\n- **Reason:** unauthorized_debit\n- **Status:** open\n\nThe eligibility check passed: the transaction is settled and within the 56-day dispute window, which runs until 3 November 2026. Nothing more is needed from you at this stage. If you have any further questions about the dispute, let me know.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000518,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S9",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_result_schema",
+      "ok": true,
+      "detail": "result matches the contract"
+     }
+    ],
+    "answer": "TX-0402 (240.00 EUR to TechMart Online, 14 July 2026) is **not eligible** for a duplicate-charge dispute. The 60-day window for this transaction closed on 12 September 2026, and today is 15 September 2026. Nothing has been opened.\n\nThe other TechMart payment, TX-0401 (240.00 EUR, 20 July 2026), falls within the window: its 60-day period runs to 18 September 2026. If you believe it is a duplicate of TX-0402, I can check its eligibility for you. I won't open a dispute unless you ask me to.",
+    "tools": [
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000374,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ }
+]

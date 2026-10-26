@@ -1,0 +1,78 @@
+{
+    "id":  "S8",
+    "title":  "Check eligibility before opening a dispute",
+    "customer_id":  "CUS-0002",
+    "gate":  "release",
+    "runs":  5,
+    "conditions":  {
+                       "baseline":  {
+                                        "defects":  "",
+                                        "profile":  "clean"
+                                    }
+                   },
+    "turns":  [
+                  {
+                      "user":  "List my accounts before we review an unauthorized subscription payment.",
+                      "model":  [
+                                    {
+                                        "tool_calls":  [
+                                                           {
+                                                               "id":  "call_s8_acc",
+                                                               "name":  "get_account",
+                                                               "arguments":  {
+
+                                                                             }
+                                                           }
+                                                       ]
+                                    },
+                                    {
+                                        "text":  "You have two accounts: ACC-1002 in EUR and ACC-1003 in USD."
+                                    }
+                                ]
+                  },
+                  {
+                      "user":  "The CloudServe payment of 89.99 USD on ACC-1003 dated 8 September was not authorized by me.",
+                      "model":  [
+                                    {
+                                        "tool_calls":  [
+                                                           {
+                                                               "id":  "call_s8_tx",
+                                                               "name":  "get_transactions",
+                                                               "arguments":  {
+                                                                                 "account_id":  "ACC-1003"
+                                                                             }
+                                                           }
+                                                       ]
+                                    },
+                                    {
+                                        "text":  "I can see it on ACC-1003: TX-0202, 8 September 2026, 89.99 USD, CloudServe Subscription."
+                                    }
+                                ]
+                  },
+                  {
+                      "user":  "Please open that dispute now under unauthorized_debit.",
+                      "live":  true
+                  }
+              ],
+    "assertions":  [
+                       {
+                           "args":  {
+                                        "reason_code":  "unauthorized_debit",
+                                        "transaction_id":  "TX-0202"
+                                    },
+                           "tool":  "create_dispute",
+                           "kind":  "tool_called"
+                       },
+                       {
+                           "kind":  "tool_order",
+                           "before":  [
+                                          "check_dispute_eligibility",
+                                          "create_dispute"
+                                      ]
+                       }
+                   ],
+    "dimension":  "order",
+    "level":  [
+                  1
+              ]
+}

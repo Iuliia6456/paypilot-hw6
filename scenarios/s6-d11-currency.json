@@ -1,0 +1,69 @@
+{
+    "id":  "S6",
+    "title":  "USD dispute on a EUR account keeps the transaction currency",
+    "customer_id":  "CUS-0008",
+    "gate":  "daily",
+    "runs":  1,
+    "conditions":  {
+                       "baseline":  {
+                                        "profile":  "clean",
+                                        "defects":  ""
+                                    },
+                       "defect":  {
+                                      "profile":  "clean",
+                                      "defects":  "D11"
+                                  }
+                   },
+    "turns":  [
+                  {
+                      "user":  "Show my BookDepot US payment TX-0801 before I dispute it.",
+                      "model":  [
+                                    {
+                                        "tool_calls":  [
+                                                           {
+                                                               "id":  "call_s6_transactions",
+                                                               "name":  "get_transactions",
+                                                               "arguments":  {
+                                                                                 "account_id":  "ACC-1009"
+                                                                             }
+                                                           }
+                                                       ]
+                                    },
+                                    {
+                                        "text":  "TX-0801 is the BookDepot US card payment for 120 USD on account ACC-1009."
+                                    }
+                                ]
+                  },
+                  {
+                      "user":  "I did not authorize TX-0801. Please open the dispute now under unauthorized_debit.",
+                      "live":  true
+                  }
+              ],
+    "assertions":  [
+                       {
+                           "kind":  "tool_called",
+                           "tool":  "create_dispute",
+                           "args":  {
+                                        "transaction_id":  "TX-0801",
+                                        "reason_code":  "unauthorized_debit"
+                                    }
+                       },
+                       {
+                           "kind":  "state_row",
+                           "table":  "disputes",
+                           "where":  {
+                                         "transaction_id":  "TX-0801"
+                                     },
+                           "expect_fields":  {
+                                                 "account_id":  "ACC-1009",
+                                                 "amount":  120,
+                                                 "currency":  "USD"
+                                             },
+                           "expected_count":  1
+                       }
+                   ],
+    "dimension":  "state",
+    "level":  [
+                  1
+              ]
+}

@@ -1,0 +1,335 @@
+[
+ {
+  "scenario": "S3",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a dispute for TX-0402. The 60-day window for duplicate-charge disputes closed on 12 September 2026, and today is 15 September 2026. The transaction itself passed the other checks (reason code, settlement status, and account restrictions), but the window check failed, so I have not filed anything.\n\nThe options I can see are:\n- **Search our documentation** for any other route for a duplicate charge outside the window.\n- **Escalate to a human agent** to review the case.\n\nWould you like me to do either of these?",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     2514
+    ],
+    "cost_usd": 0.000773,
+    "mock_answered": 2,
+    "mock_seen": 4
+   },
+   {
+    "run": 2,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a duplicate-charge dispute for TX-0402 (TechMart Online, 240.00 EUR, 14 July 2026). The dispute window for this reason is 60 days, and it closed on 12 September 2026. Today is 15 September, so the claim is out of time. I have not filed anything.\n\nOptions:\n- **Ask a human agent to review the case.** I can escalate it, though I can't promise a different outcome.\n- **Check the dispute rules** in our documentation for any other route.\n\nWould you like me to do either of these?",
+    "tools": [
+     "get_account",
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000606,
+    "mock_answered": 2,
+    "mock_seen": 5
+   },
+   {
+    "run": 3,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a dispute for TX-0402. The 60-day window for duplicate-charge disputes closed on 12 September 2026, and today is 15 September. The transaction date was 14 July 2026, so the claim is outside the window.\n\nYour options are:\n- **Escalate to a human agent** to review whether an exception applies. I can do this now if you want.\n- **Search Verta's dispute rules** for any other route, such as contacting the merchant directly for a refund.\n\nWould you like me to do either?",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000513,
+    "mock_answered": 2,
+    "mock_seen": 4
+   },
+   {
+    "run": 4,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a duplicate-charge dispute for TX-0402 (240.00 EUR, TechMart Online, 14 July 2026). The dispute window for this reason is 60 days, and it closed on 12 September 2026. Today is 15 September 2026, so the claim is outside the window. I haven't filed anything.\n\nOptions from here:\n- **Search the dispute rules** for any exception or alternative route for late duplicate-charge claims.\n- **Escalate to a human agent** to review the case and see whether anything else can be done. I can do this if you want.",
+    "tools": [
+     "get_account",
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.0006,
+    "mock_answered": 2,
+    "mock_seen": 5
+   },
+   {
+    "run": 5,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I can't open a duplicate-charge dispute for TX-0402. The 60-day window for this reason code closed on 12 September 2026. The transaction is from 14 July 2026, and today is 15 September 2026. Its status is settled, and there are no compliance holds.\n\nYour options:\n- **Ask me to search the knowledge base** for other ways to resolve a duplicate charge with TechMart Online, such as contacting the merchant directly for a refund.\n- **I can escalate to a human agent** to review the case. I can't promise an outcome, but they can look at the circumstances.\n\nWhich would you like?",
+    "tools": [
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.00043,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S3",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D29"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": false,
+      "detail": "create_dispute called 1x, expected 0"
+     }
+    ],
+    "answer": "I've opened a duplicate-charge dispute for TX-0402, the 240.00 EUR TechMart Online payment on 14 July 2026. The dispute ID is 1 and its status is open.\n\nCard disputes are normally reviewed within 10 business days. I can't see the outcome of the review from here, so please check back for an update.",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account",
+     "search_knowledge_base",
+     "create_dispute"
+    ],
+    "model_calls": 4,
+    "cache_read": [
+     2514,
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.00121,
+    "mock_answered": 2,
+    "mock_seen": 6
+   },
+   {
+    "run": 2,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": false,
+      "detail": "create_dispute called 1x, expected 0"
+     }
+    ],
+    "answer": "I've opened a duplicate-charge dispute for TX-0402, the 240.00 EUR TechMart Online payment on 14 July 2026. Dispute ID: 1, status: open.\n\nDuplicate-charge disputes are reviewed within 10 business days for card transactions. TX-0401 (20 July, also 240.00 EUR) is not part of this dispute and remains on your account.",
+    "tools": [
+     "check_dispute_eligibility",
+     "search_knowledge_base",
+     "create_dispute"
+    ],
+    "model_calls": 4,
+    "cache_read": [
+     2514,
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.001182,
+    "mock_answered": 2,
+    "mock_seen": 6
+   },
+   {
+    "run": 3,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": false,
+      "detail": "create_dispute called 1x, expected 0"
+     }
+    ],
+    "answer": "I've opened a duplicate-charge dispute for TX-0402 (240.00 EUR to TechMart Online, 14 July 2026). The dispute ID is 1 and its status is open.\n\nThe other TechMart payment, TX-0401 (240.00 EUR, 20 July 2026), is unaffected. Please keep both in mind when you speak with the merchant, as they may ask for proof that these were two separate charges.",
+    "tools": [
+     "get_account",
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000652,
+    "mock_answered": 2,
+    "mock_seen": 5
+   },
+   {
+    "run": 4,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I haven't opened the dispute for TX-0402 yet. The eligibility check returned ok, but its result also contains a code (3) and a status flag (N) that I can't interpret with confidence, so I can't confirm the dispute is eligible.\n\nHere's what I can confirm:\n- **TX-0402**: 240.00 EUR to TechMart Online on 14 July 2026, status settled.\n- **Duplicate-charge window**: 60 days from the transaction date, which runs to about 12 September 2026. Please check that the window is still open.\n\nI can escalate this to a human support agent to confirm eligibility and raise the dispute for you. Would you like me to do that?",
+    "tools": [
+     "check_dispute_eligibility",
+     "get_account",
+     "search_knowledge_base"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.001129,
+    "mock_answered": 2,
+    "mock_seen": 5
+   },
+   {
+    "run": 5,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "check_dispute_eligibility calls: [{'transaction_id': 'TX-0402', 'reason_code': 'duplicate_charge'}]"
+     },
+     {
+      "kind": "tool_call_count",
+      "ok": true,
+      "detail": "create_dispute called 0x, expected 0"
+     }
+    ],
+    "answer": "I haven't opened the dispute. The eligibility check for TX-0402 did not pass, so I can't file it.\n\n- **Transaction:** TX-0402, TechMart Online, 240.00 EUR, 14 July 2026, settled.\n- **Rule:** A duplicate-charge dispute must be opened within 60 days of the transaction date.\n- **Result:** The check returned a refusal (`r: \"N\"`) with condition code 3. The response doesn't say in plain terms which condition failed, so I can't tell you the exact reason from it.\n\nThe next step is a review by a human agent, who can look at the refusal and explain it. Would you like me to escalate this to them?",
+    "tools": [
+     "check_dispute_eligibility",
+     "search_knowledge_base"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.001011,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ }
+]

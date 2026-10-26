@@ -1,0 +1,56 @@
+{
+    "id":  "S9",
+    "title":  "Eligibility result contains eligible and checks",
+    "customer_id":  "CUS-0004",
+    "gate":  "daily",
+    "runs":  1,
+    "conditions":  {
+                       "baseline":  {
+                                        "profile":  "clean",
+                                        "defects":  ""
+                                    },
+                       "defect":  {
+                                      "profile":  "clean",
+                                      "defects":  "D29"
+                                  }
+                   },
+    "turns":  [
+                  {
+                      "user":  "List the two TechMart payments on ACC-1005 before checking my dispute.",
+                      "model":  [
+                                    {
+                                        "tool_calls":  [
+                                                           {
+                                                               "id":  "call_s9_tx",
+                                                               "name":  "get_transactions",
+                                                               "arguments":  {
+                                                                                 "account_id":  "ACC-1005"
+                                                                             }
+                                                           }
+                                                       ]
+                                    },
+                                    {
+                                        "text":  "Yes, on ACC-1005 there are two TechMart Online payments of 240.00 EUR: TX-0401 on 20 July 2026 and TX-0402 on 14 July 2026."
+                                    }
+                                ]
+                  },
+                  {
+                      "user":  "Check whether TX-0402 is eligible for a duplicate-charge dispute. Do not open it.",
+                      "live":  true
+                  }
+              ],
+    "assertions":  [
+                       {
+                           "kind":  "tool_result_schema",
+                           "tool":  "check_dispute_eligibility",
+                           "required":  {
+                                            "eligible":  "boolean",
+                                            "checks":  "object"
+                                        }
+                       }
+                   ],
+    "dimension":  "contract",
+    "level":  [
+                  1
+              ]
+}

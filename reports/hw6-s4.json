@@ -1,0 +1,33 @@
+[
+ {
+  "scenario": "S4",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0401', 'account_id': 'ACC-1005', 'amount': 240.0, 'currency': 'EUR'}]"
+     }
+    ],
+    "answer": "I won't open it again. The first request succeeded: dispute ID 1 for TX-0401 is open, with a duplicate-charge reason code. A second submission could create a duplicate dispute on the same transaction.\n\nI don't have a tool that lists dispute statuses, so I can't independently confirm the status beyond that response. If you want further confirmation, I can escalate to a human agent to verify dispute ID 1 in the case system.",
+    "tools": [],
+    "model_calls": 1,
+    "cache_read": [
+     2514
+    ],
+    "cost_usd": 0.000249,
+    "mock_answered": 3,
+    "mock_seen": 4
+   }
+  ]
+ }
+]

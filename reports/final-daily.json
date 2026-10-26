@@ -1,0 +1,267 @@
+[
+ {
+  "scenario": "S1",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0202', 'account_id': 'ACC-1003', 'amount': 89.99, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "I've opened dispute 1 for TX-0202, the 89.99 USD CloudServe Subscription charge on ACC-1003 dated 8 September 2026, under the reason \"unauthorized debit\". Its status is now open.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     0,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000758,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S1",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D12"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 3,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0202', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": false,
+      "detail": "account_id='ACC-1002', expected 'ACC-1003'; currency='EUR', expected 'USD'"
+     }
+    ],
+    "answer": "I've opened dispute 1 for TX-0202 (89.99 USD, CloudServe Subscription, 8 September 2026) under the reason \"unauthorized debit\". Its status is open.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     0,
+     2638,
+     2638
+    ],
+    "cost_usd": 0.000769,
+    "mock_answered": 4,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S4",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0401', 'account_id': 'ACC-1005', 'amount': 240.0, 'currency': 'EUR'}]"
+     }
+    ],
+    "answer": "I won't open it again. Dispute ID 1 for TX-0401 was created with status **open**, and I can't tell you more about its status from here. Opening a second dispute for the same transaction could create a duplicate case, so I've left the existing one as it is.\n\nIf you want independent confirmation, I can escalate the case to a human agent to check dispute 1 directly.",
+    "tools": [],
+    "model_calls": 1,
+    "cache_read": [
+     2514
+    ],
+    "cost_usd": 0.000196,
+    "mock_answered": 3,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S6",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": true,
+      "detail": "rows [{'transaction_id': 'TX-0801', 'account_id': 'ACC-1009', 'amount': 120.0, 'currency': 'USD'}]"
+     }
+    ],
+    "answer": "The dispute for TX-0801 is now open (dispute ID 1, status: open).\n\n- **Transaction:** BookDepot US, 120 USD, 9 September 2026, account ACC-1009\n- **Reason:** unauthorized debit\n- **Eligibility:** passed the window, status, and account checks. The filing deadline was 4 November 2026.\n\nThe dispute is now under review. If you have any other information about the payment, such as a receipt or a merchant confirmation, please keep it available in case it is requested.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000566,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S6",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D11"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_called",
+      "ok": true,
+      "detail": "create_dispute calls: [{'transaction_id': 'TX-0801', 'reason_code': 'unauthorized_debit'}]"
+     },
+     {
+      "kind": "state_row",
+      "ok": false,
+      "detail": "currency='EUR', expected 'USD'"
+     }
+    ],
+    "answer": "I've opened dispute #1 for TX-0801 (BookDepot US, 120 USD, 9 September 2026) under the unauthorized debit reason code. Its status is open.\n\nThe dispute window for this transaction runs until 4 November 2026. If you have any details that support the claim, such as a merchant email or a note of when you last used your card, keep them handy in case the review asks for them.",
+    "tools": [
+     "check_dispute_eligibility",
+     "create_dispute"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000575,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ },
+ {
+  "scenario": "S9",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "tool_result_schema",
+      "ok": true,
+      "detail": "result matches the contract"
+     }
+    ],
+    "answer": "TX-0402 (240.00 EUR, TechMart Online, 14 July 2026) is **not eligible** for a duplicate-charge dispute. The 60-day window for this transaction closed on 12 September 2026, and today is 15 September 2026. I have not opened a dispute.\n\nI can search the knowledge base for other options, or escalate the case to a human agent to review whether an exception applies.",
+    "tools": [
+     "check_dispute_eligibility"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     2514,
+     2514
+    ],
+    "cost_usd": 0.000352,
+    "mock_answered": 2,
+    "mock_seen": 4
+   }
+  ]
+ },
+ {
+  "scenario": "S9",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D29"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 2,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "tool_result_schema",
+      "ok": false,
+      "detail": "eligible: expected boolean, got {\"ok\": true, \"r\": \"N\", \"c\": [3], \"w\": 60}; checks: expected object, got {\"ok\": true, \"r\": \"N\", \"c\": [3], \"w\": 60}"
+     }
+    ],
+    "answer": "TX-0402 is **not eligible** for a duplicate-charge dispute, so I have not opened one.\n\nThe eligibility check returned a refusal with reason code 3, and I can't tell from the system output what that code specifically means. The knowledge base confirms that duplicate-charge disputes must be raised within 60 days of the transaction date. TX-0402 is dated 14 July 2026, and your account already shows a transaction from 1 September 2026, so the window has most likely closed.\n\nIf you believe the refusal is wrong, I can escalate the case to a human agent to review it.",
+    "tools": [
+     "check_dispute_eligibility",
+     "search_knowledge_base"
+    ],
+    "model_calls": 3,
+    "cache_read": [
+     2514,
+     2514,
+     2514
+    ],
+    "cost_usd": 0.00073,
+    "mock_answered": 2,
+    "mock_seen": 5
+   }
+  ]
+ }
+]

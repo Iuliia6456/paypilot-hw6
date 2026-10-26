@@ -1,0 +1,70 @@
+[
+ {
+  "scenario": "S5",
+  "condition": "baseline",
+  "settings": {
+   "profile": "clean",
+   "defects": ""
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": true,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": true,
+      "detail": "cache_read per call from #2: [2514]"
+     }
+    ],
+    "answer": "Your limits for tier3, as of 15 September 2026, are in EUR:\n\n- **Daily:** 100,000.00 limit, 4,914.00 used, 95,086.00 remaining\n- **Monthly:** 1,000,000.00 limit, 35,334.00 used, 964,666.00 remaining",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     2514
+    ],
+    "cost_usd": 0.000594,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ },
+ {
+  "scenario": "S5",
+  "condition": "defect",
+  "settings": {
+   "profile": "clean",
+   "defects": "D28"
+  },
+  "runs": [
+   {
+    "run": 1,
+    "live_step": 4,
+    "passed": false,
+    "verdicts": [
+     {
+      "kind": "cache_read_min",
+      "ok": false,
+      "detail": "cache_read per call from #2: [0]"
+     }
+    ],
+    "answer": "Your tier3 transfer limits, as of 15 September 2026, are:\n\n- **Daily:** limit €100,000.00. Spent today: €4,914.00. Remaining: €95,086.00.\n- **Monthly:** limit €1,000,000.00. Spent this month: €35,334.00. Remaining: €964,666.00.\n\nThese figures are in EUR equivalent.",
+    "tools": [
+     "check_limits"
+    ],
+    "model_calls": 2,
+    "cache_read": [
+     0,
+     0
+    ],
+    "cost_usd": 0.000894,
+    "mock_answered": 5,
+    "mock_seen": 7
+   }
+  ]
+ }
+]
