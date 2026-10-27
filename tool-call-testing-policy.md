@@ -73,19 +73,28 @@ S3 checks eligibility for TX-0402 and requires zero `create_dispute` calls. Its 
 | `quote_fx` | Calculation: wrong amount, currency or tier |
 | `check_dispute_eligibility` | Decision: wrong eligibility or unclear output |
 | `search_knowledge_base` | Read: wrong or malicious guidance |
-| `escalate_to_human` | Transfer to human support: unnecessary work or excess disclosure; cancellation unverified |
+| `escalate_to_human` | Irreversible write: it sends a request to the support team (to human staff). Since there is no cancellation procedure, we consider this data transmission to be irreversible. |
 | `create_dispute` | Irreversible write: incorrect or duplicate dispute |
 | `send_statement` | Irreversible send: private data sent to the wrong address |
+
+Checks must happen before saving or sending. We treat these actions as irreversible once they happen:
+- **create_dispute**: check the transaction before saving the dispute.
+- **send_statement**: check the email before sending private data. Once sent, we cannot reliably take it back.
+- **escalate_to_human**: check the request before sending it to support. We treat this as irreversible because we have no documented way to cancel it.
+
+Validation must finish before that point. We treat escalation
+as irreversible because no cancellation operation is documented.
 
 
 ## 8. Blocking Checks and Gates
 
 Proposed server-side protections:
 
-| Action | Check before execution | Cost / legitimate use affected |
-|---|---|---|
-| Create dispute | Ownership, eligibility, amount/currency and atomic duplicate prevention | Database validation; latency not measured. Valid requests wait if validation is unavailable. |
-| Send statement | Ownership and verified destination | Account/email search; latency not measured. A customer with a lost inbox needs the email-change process. |
+| Action | Check before execution | Estimated extra delay | Effect on a legitimate request |
+|---|---|---|---|
+| create_dispute | Check ownership, eligibility, amount, currency and duplicates | About 1-10 ms for local checks, plus one eligibility-engine request, estimated at 50-200 ms | A valid dispute waits or is blocked if validation is unavailable. |
+| send_statement | Check account ownership and match the destination against the verified email | About 1-10 ms for local comparisons, plus one account search, estimated at 10-100 ms | A customer with a new email must complete verification before receiving the statement. |
+| escalate_to_human | Check customer identity, required details and whether the request was already submitted | About 1-10 ms for local checks, plus one duplicate-request search, estimated at 10-100 ms | A legitimate repeat request may need confirmation before submission. |
 
 Tests check the results after a step finishes. They can detect a
 wrong action, but cannot undo it. The application must check
